@@ -1,0 +1,12 @@
+# common flaws
+- **information disclosure** -> *informations that could help exploitation (error, public information: documentation,news,github)*
+- **broken object level authorization** -> *ability to access unauthorized resources*
+- **broken user authentication** -> *compromise other identities*
+- **excessive data exposure** -> *expected response for user A but also includes details for user B*
+- **improper rate limiting** -> *bypass rate limiting for DOS, additional cost for provider*
+- **broken function level authorization** -> *ability to perform unauthorized actions*
+- **mass assignment** -> *ability to modify data that is not supposed to | including isAdmin=True in the registration request url (user=test&password=test&isAdmin=True)*
+- **security misconfiguration** -> *developers mistakes that could lead to exploitation | misconfigured headers, lack of encryption, lack of input sanitization, error message*
+- **injections** -> *ability to conduct SQLi, NoSQLi, RCE/command injection due to lack of input sanitization*
+- **improper asset management** -> *usability of older API version or new API that is still in development | often lack in security as they are not in production*
+- **business logic flaws** -> *ability to work around intended functionalities to achieve further exploitation*
