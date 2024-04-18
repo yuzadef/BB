@@ -1,0 +1,33 @@
+- understand API properly; authentication, parameters, headers, body requests, expected response
+- always test the intended usage before moving into attack mode
+- enrich payloads from informations gathered in recon process (verbose error, endpoint analysis, information disclosure)
+- avoid:
+  - too many requests for resources that does not exist
+	- too many requests within a small amount of time
+	- common attack attempts like SQLi and XSS payloads
+	- abnormal behavior such as tests for authorization flaws
+- bypassing security controls:
+  - use string terminators
+		- %00, 0x00, //, ;, %, !, ?, [], %5B%5D, %09, %0a, %0b, %0c, %0e
+		- use to terminate processing on back-end validation
+	- case switching | uppercase & lowercase
+	- <sCriPt>aleRt("hello")</sCriPt>
+	  - SelECt * FroM UsERs
+	- payloads encoding
+	  - either a part of the payloads or the entire payloads
+		- url encoding, html encoding, base64 encoding
+		- focus on characters that triggers the security control
+		- docuble encoding if there is 2 decoding processes in back-end
+- bypassing rate limit
+  - throttle the limit of requests | how many requests in a second, delaying the request after the previous
+	- path bypass with case switching (uppercase/lowercase), adding null bytes
+	- /path/accoUNTS
+	  - /path/accounts%00
+	- origin header spoofing
+	  - X-Forwarded-For, X-Forwarded-Host, X-Host, X-Originating-IP, X-Remote-IP, X-Client-IP, X-Remote-Addr
+		- include private ip, local ip or ip withing the range of the target
+	- randomize the user-agents
+	- rotating IP address
+- look for staging instances: dev, test & production
+- found versioning: identify the differences
+- complete a thorough app walkthrough in different privilege context
