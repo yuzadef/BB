@@ -1,5 +1,8 @@
 # IDOR & Broken Access Control (BAC)
 
+##### Vertical Access Control involves higher privilege users
+##### Horizontal Access Control involves other users with similar authorization
+
 ## testing workflow
 1. register multiple accounts for testing purposes
 2. locate a session identifier and other cookies that is important
@@ -65,4 +68,7 @@
   	GET /admin-roles?username=normaluser&action=upgrade		200 Success
   	Session: normalusertoken
   	```
-  9. g
+ 9. userId is not incremental digits but GUIDs?
+    	- look for a feature that involve other user's participation
+    	- E.g: /blog, /imageContribution, /comments, /chatbox
+    	- make a request and see if the GUIDs of other users are disclosed
