@@ -23,24 +23,19 @@
 		- Host: bing.com
 		- X-Forwarded-Host: bing.com
 	- check for DNS/HTTPS interactions? click on password reset link and check if token is leaked within interactions
-4. privilege escalation from user to admin
-	- find out what roles exists and what they can do
-	- how a user can claim a role & can it be tempered
-		- HTTP request body or url parameters
-		- specified in access token or authorization token
-		- HTTP headers
-5. accessing unprotected/hidden administrative endpoints
+
+4. accessing unprotected/hidden administrative endpoints
 	- look for admin paths in common web files
 		- robots.txt, sitemap.xml, .well-known/security.txt
 		- waybackurls, hakrawler
 		- commented lines in HTML source code, JavaScript code
 	- what determines a user can access or not? sessionId, access token?
 	- what is the HTTP status code?
-6. hidden parameter leads to privilege escalation
+5. hidden parameter leads to privilege escalation
 	- /login, /profile or any page with ability to interact with user's data
 	- fuzz for hidden parameters in the url or request body using arjun
 		- ?role=admin, ?admin=True, ?priv=high
-7. bypass deny access for unauthenticated user when accessing authenticated path
+6. bypass deny access for unauthenticated user when accessing authenticated path
 	- try supply a new header like: X-Original-URL or X-Rewrite-URL
 	```
 	GET /admin HTTP/1.1			403 Denied Access
@@ -54,9 +49,9 @@
  	- making use of path discrepancies
 	```
  	/admin 	      403 Denied Access >> /ADMIN 	200 Access Granted
- 	/admin/files 	403 Denied Access >> /admin/files/ 200 	Access Granted
+ 	/admin/files 	403 Denied Access >> /admin/files/ 	200 	Access Granted
  	/admin/deleteUser	403 Unauthorized >> /admin/deleteUser.php	200 Success
- 8. bypass unauthorized action using different HTTP method
+ 7. bypass unauthorized action using different HTTP method
 	- instead of POST, try GET or PUT
 	```
  	POST /admin-roles HTTP/1.1
@@ -68,11 +63,16 @@
   	GET /admin-roles?username=normaluser&action=upgrade		200 Success
   	Session: normalusertoken
   	```
- 9. userID is not incremental but GUIDs
+ 8. userID is not incremental but GUIDs
 	- look for a feature that involve other user's participation
 	- E.g: /blog, /imageContribution, /comments, /chatbox
 	- make a request and see if the GUIDs of other users are disclosed in the response
 
-11. data leakage upon redirect
+9. data leakage upon redirect
 	- change userID of other users and gets redirected to /login page
 	- check for disclosed user information in the 302 response page
+
+10. password disclosure (masked input) in /passwordChange page
+    	- in your own account, go to /passwordChange and notice your current password is visible in masked input
+    	- reading the source code may reveal the masked password
+    	- combine with IDOR to get administrator's password for ATO
