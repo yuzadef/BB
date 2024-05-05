@@ -73,6 +73,6 @@
 	- check for disclosed user information in the 302 response page
 
 10. password disclosure (masked input) in /passwordChange page
-    	- in your own account, go to /passwordChange and notice your current password is visible in masked input
-    	- reading the source code may reveal the masked password
-    	- combine with IDOR to get administrator's password for ATO
+	- in your own account, go to /passwordChange and notice your current password is visible in masked input
+	- reading the source code may reveal the masked password
+	- combine with IDOR to get administrator's password for ATO
