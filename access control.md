@@ -1,4 +1,4 @@
-# IDOR & Broken Access Control (BAC)
+# idor & broken access control
 
 ##### Vertical Access Control involves higher privilege users
 ##### Horizontal Access Control involves other users with similar authorization
