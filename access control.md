@@ -1,8 +1,5 @@
 # idor & broken access control
 
-##### Vertical Access Control involves higher privilege users
-##### Horizontal Access Control involves other users with similar authorization
-
 ## testing workflow
 1. register multiple accounts for testing purposes
 2. locate a session identifier and other cookies that is important
