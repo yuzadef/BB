@@ -12,7 +12,6 @@
   	- tamper with the payloads to find out which parameter is being used to pull out the larger data set of a user
   	- compare the token with another user and see what differs
 
-
 ## tips & tricks
 ***1. password reset poisoning via parameter tampering***
 - a parameter (resetPasswordUrlPrefix, urlForwarder, etc..) during requesting for password reset link
