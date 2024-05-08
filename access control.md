@@ -1,11 +1,17 @@
 # idor & broken access control
 
 ## testing workflow
-1. register multiple accounts for testing purposes
-2. locate a session identifier and other cookies that is important
-	- could be in request headers, body requests or even the url
-	- simplify the headers, requests or the url until you can't longer get data for the user
-	- use developer tools and check if cookies has HttpOnly flag (usually cookies that is important have the flag)
+***1. register multiple accounts for testing purposes***
+
+***2. locate a session identifier and other cookies that is important***
+- could be in request headers, body requests or even the url
+- simplify the headers, requests or the url until you can't longer get data for the user
+- use developer tools and check if cookies has HttpOnly flag (usually cookies that is important have the flag)
+- if the application uses JWTs
+  	- determine the algorithm used
+  	- tamper with the payloads to find out which parameter is being used to pull out the larger data set of a user
+  	- compare the token with another user and see what differs
+
 
 ## tips & tricks
 ***1. password reset poisoning via parameter tampering***
