@@ -35,6 +35,12 @@ X-Forwarded-Host: burpcollaborator.io	[2]
 GET https://example.com/passwordResetLink HTTP/1.1
 Host: burpcollaborator.io
 ```
+<details>
+<summary>writeups</summary>
+	
+* [Acunetix article](https://www.acunetix.com/blog/articles/password-reset-poisoning/)
+  
+</details>
 
 ***4. accessing unprotected/hidden administrative endpoints***
 - look for admin paths in common web files
@@ -118,4 +124,21 @@ Session: normalusertoken
 - request for password reset link
 - in the password reset page, click on any social media link then intercept the request
 - notice the password reset token is disclosed in the referer header
+<details>
+<summary>writeups</summary>
+	
+* [342693](https://hackerone.com/reports/342693)
+* [272379](https://hackerone.com/reports/272379)
+  
+</details>
 
+***14. polluting parameter to get password reset link***
+- request for password reset link with other user email and intercept the request
+- add another email parameter with your own email and send the request
+- the password reset link will be sent to both victim and you
+<details>
+<summary>writeups</summary>
+	
+* [Readme.com ATO](https://medium.com/@0xankush/readme-com-account-takeover-bugbounty-fulldisclosure-a36ddbe915be)
+  
+</details>
