@@ -1,5 +1,6 @@
 # no rate limit & rate limit bypass
 
+## tips & tricks
 ***1. no rate limit on password reset page leads to mass mailing***
 - request for password reset link and intercept the request
 - send the request to intruder and set a high payload value (e.g: 100 numbers)
