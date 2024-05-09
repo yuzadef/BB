@@ -96,31 +96,17 @@ username=normaluser&action=upgrade
 GET /admin-roles?username=normaluser&action=upgrade		200 Success
 Session: normalusertoken
 ```
-
-***8. user GUIds leaked in app features***
-- look for a feature that involve other user's participation
-- E.g: /blog, /imageContribution, /comments, /chatbox
-- make a request and see if the GUIDs of other users are disclosed in the response
   
-***9. data leakage upon redirect***
-- change userID of other users and gets redirected to /login page
-- check for disclosed user information in the 302 response page
-  
-***10. password disclosure (masked input) in /passwordChange page***
-- in your own account, go to /passwordChange and notice your current password is visible in masked input
-- reading the source code may reveal the masked password
-- combine with IDOR to get administrator's password for ATO
-  
-***11. skip multi-step process***
+***8. skip multi-step process***
 - simulate the multi-step process to understand how it works
 - if there are 3 steps involved, see if you can skip the 2nd process and goes directly to the 3rd step
 - this typically works for business logic error as well
   
-***12. bypass location-based access control***
+***9. bypass location-based access control***
 - stumble a page that only allow users from a certain country
 - use proxy or vpn and see if you can bypass deny access from other countries
 
-***13. password reset token leaked in referer header (H1: 342693/272379)***
+***10. password reset token leaked in referer header (H1: 342693/272379)***
 - request for password reset link
 - in the password reset page, click on any social media link then intercept the request
 - notice the password reset token is disclosed in the referer header
@@ -132,7 +118,7 @@ Session: normalusertoken
   
 </details>
 
-***14. polluting parameter to get password reset link***
+***11. polluting parameter to get password reset link***
 - request for password reset link with other user email and intercept the request
 - add another email parameter with your own email and send the request
 - the password reset link will be sent to both victim and you
