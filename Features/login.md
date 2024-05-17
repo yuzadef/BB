@@ -13,3 +13,9 @@ dummy2@example.com
 testingthisemail@example.com
 ```
 - run the intruder and see if the email gets blocked or not
+
+***2. No rate limit during authentication request***
+- application requires email (no password) and authentication link will be sent to the email
+- intercept the request and send it to intruder
+- clear payloads positions and set payload types to null payloads
+- run intruder and wait for emails to bomb your inbox
