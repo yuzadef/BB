@@ -13,6 +13,10 @@
   	- compare the token with another user and see what differs
 
 ## tips & tricks
+
+#### Notes
+- access control bugs involving password reset functionality -- navigate to Features/password-reset.md
+
 ***1. accessing unprotected/hidden administrative endpoints***
 - look for admin paths in common web files
 	- robots.txt, sitemap.xml, .well-known/security.txt
