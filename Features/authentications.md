@@ -1,4 +1,4 @@
-# Login/Signin functionality testing
+# Login/Register functionality testing
 
 ## Tips & tricks
 
