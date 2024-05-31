@@ -8,13 +8,20 @@
 
 ## What to test?
 
+***Tags: password reset, account takeover***
 1. no rate limit on password reset request leads to mass mailing
 
 2. link poisoning on password reset request leads to ATO
 
 3. leaked password reset token via host header injection leads to ATO
 
-4. session expiration after logout
+4. authentication bypass via response manipulation leads to ATO
+
+5. OTP bypass via response manipulation leads to ATO
+
+***Tags: session identifier, application logic***
+
+1. insufficient session expiration after logout
 
 
 
