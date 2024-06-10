@@ -6,22 +6,10 @@
 
 - My own hunting reports
 
-## What to test?
+## Writeups
 
-***Tags: password reset, account takeover, authentication bypass, OTP***
-1. no rate limit on password reset request leads to mass mailing
-
-2. link poisoning on password reset request leads to ATO
-
-3. leaked password reset token via host header injection leads to ATO
-
-4. authentication bypass via response manipulation leads to ATO
-
-5. OTP bypass via response manipulation leads to ATO
-
-***Tags: session identifier, application logic, misconfiguration***
-
-1. insufficient session expiration after logout
+***Tags: Rate limit, OTP, Authentication***
+1. https://jeppe-b-weikop.medium.com/techniques-for-bypassing-rate-limiting-on-otp-2fa-endpoints-2a7dc93ed262
 
 
 
