@@ -14,6 +14,7 @@
 ***Tags: Business logic***
 1. https://cyberw1ng.medium.com/how-to-exploit-business-logic-vulnerabilities-for-bug-bounty-2024-5c9f14420d50
 2. https://freedium.cfd/https://medium.com/@Land2Cyber/hunting-for-business-logic-flaws-a-bug-bounty-hunters-checklist-5a75ea45ada8
+3. https://github.com/Az0x7/vulnerability-Checklist/blob/main/Bussiness%20Logic/bussiness%20logic.md
 
 
 
